@@ -1,0 +1,2449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reputigo Universal Service Cost Calculator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- External CSS (Link this to your GitHub Pages hosted style.css) -->
+    <!-- Replace 'your-repo-name' and 'your-username' with your actual GitHub details -->
+    <link rel="stylesheet" href="/style.css"> 
+</head>
+<body>
+    <div class="rg-container">
+        <!-- Main Universal Header -->
+        <div class="rg-calc-header">
+            <h1 class="text-3xl mb-2">Reputigo Service Cost Calculator</h1>
+            <p class="text-gray-300 mb-4">Select your service industry to get an instant estimate.</p>
+        </div>
+
+        <!-- Industry Selection Buttons -->
+        <div class="rg-calc-industry-btn-group">
+            <button class="rg-calc-industry-btn" id="btnCleaning">Cleaning Services</button>
+            <button class="rg-calc-industry-btn" id="btnLawnCare">Lawn Care Services</button>
+            <button class="rg-calc-industry-btn" id="btnPainting">Painting</button>
+            <button class="rg-calc-industry-btn" id="btnRecycling">Recycling Services</button>
+            <button class="rg-calc-industry-btn" id="btnWindowCleaning">Window Cleaning</button>
+            <button class="rg-calc-industry-btn" id="btnPooperScooper">Pooper Scooper Services</button>
+            <button class="rg-calc-industry-btn" id="btnPropertyMaintenance">Property Maintenance</button>
+            <button class="rg-calc-industry-btn" id="btnPoolSpa">Pool & Spa Services</button>
+            <button class="rg-calc-industry-btn" id="btnPressureWashing">Pressure Washing</button>
+            <button class="rg-calc-industry-btn" id="btnPaving">Paving Services</button>
+            <button class="rg-calc-industry-btn" id="btnInstallation">Installation Services</button>
+            <button class="rg-calc-industry-btn" id="btnJunkRemoval">Junk Removal</button>
+            <button class="rg-calc-industry-btn" id="btnIrrigation">Irrigation Services</button>
+            <button class="rg-calc-industry-btn" id="btnFence">Fence Services</button>
+            <button class="rg-calc-industry-btn" id="btnJanitorial">Janitorial Services</button>
+            <button class="rg-calc-industry-btn" id="btnFlooring">Flooring Services</button>
+            <button class="rg-calc-industry-btn" id="btnDogWalking">Dog Walking</button>
+            <button class="rg-calc-industry-btn" id="btnApplianceRepair">Appliance Repair Services</button>
+            <button class="rg-calc-industry-btn" id="btnChimneySweep">Chimney Sweep Services</button>
+            <button class="rg-calc-industry-btn" id="btnCarpetCleaning">Carpet Cleaning</button>
+            <button class="rg-calc-industry-btn" id="btnCarpentry">Carpentry</button>
+            <button class="rg-calc-industry-btn" id="btnGarage">Garage Services</button>
+            <button class="rg-calc-industry-btn" id="btnProfessional">Professional Services</button>
+            <button class="rg-calc-industry-btn" id="btnTree">Tree Services</button>
+            <button class="rg-calc-industry-btn" id="btnLocksmith">Locksmith Services</button>
+            <button class="rg-calc-industry-btn" id="btnPet">Pet Services</button>
+            <button class="rg-calc-industry-btn" id="btnLandscaping">Landscaping Services</button>
+            <button class="rg-calc-industry-btn" id="btnHandyman">Handyman Services</button>
+            <button class="rg-calc-industry-btn" id="btnHVAC">HVAC Services</button>
+            <button class="rg-calc-industry-btn" id="btnElectrical">Electrical Services</button>
+            <button class="rg-calc-industry-btn" id="btnRoofing">Roofing Services</button>
+            <button class="rg-calc-industry-btn" id="btnPlumbing">Plumbing</button>
+        </div>
+
+        <!-- Dynamic Calculator Forms Container -->
+        <div id="calculatorFormsContainer" class="rg-calc-inputs">
+
+            <!-- CLEANING COST CALCULATOR FORM -->
+            <div id="cleaning-form" class="rg-calc-form-section">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Cleaning Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Calculation is based on:</p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <span id="cleaningRoomsLabel" class="font-medium rg-calc-active-toggle-text">Number of rooms</span>
+                        <label class="rg-calc-toggle-switch">
+                            <input type="checkbox" id="cleaningToggle">
+                            <span class="rg-calc-toggle-slider"></span>
+                        </label>
+                        <span id="cleaningSqFtLabel" class="font-medium">Square footage</span>
+                    </div>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="cleaningVisitType">Visit Type:</label>
+                        <select id="cleaningVisitType" class="rg-form-control">
+                            <option value="weekly">Regular weekly/biweekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="oneTime">One-time / Deep Clean</option>
+                        </select>
+                    </div>
+                    <div id="cleaningRoomBasedInputs" class="rg-form-group">
+                        <label for="cleaningBedrooms">Number of Bedrooms:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="cleaning" data-type="bedrooms" data-delta="-1">-</button>
+                            <span id="cleaningBedroomsValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="cleaning" data-type="bedrooms" data-delta="1">+</button>
+                        </div>
+                    </div>
+                    <div id="cleaningSquareFootageInput" class="rg-form-group hidden">
+                        <label for="cleaningSquareFootage">Enter square footage:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="cleaningSquareFootage" class="rg-form-control" value="1000" min="100">
+                            <span class="rg-calc-unit">sq.ft</span>
+                        </div>
+                    </div>
+                    <div id="cleaningBathroomInputs" class="rg-form-group">
+                        <label for="cleaningBathrooms">Number of Bathrooms:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="cleaning" data-type="bathrooms" data-delta="-1">-</button>
+                            <span id="cleaningBathroomsValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="cleaning" data-type="bathrooms" data-delta="1">+</button>
+                        </div>
+                    </div>
+                    <div class="rg-form-group">
+                        <label>Add ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center"><input type="checkbox" id="cleaningFloorCleaning"><span class="ml-2">Floor Cleaning</span></label>
+                            <label class="flex items-center"><input type="checkbox" id="cleaningAppliances"><span class="ml-2">Appliances</span></label>
+                            <label class="flex items-center"><input type="checkbox" id="cleaningWindowCleaning"><span class="ml-2">Window Cleaning</span></label>
+                            <label class="flex items-center"><input type="checkbox" id="cleaningLaundry"><span class="ml-2">Laundry</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAWN CARE COST CALCULATOR FORM -->
+            <div id="lawn-care-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Lawn Care Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Calculation is based on:</p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <span id="lawnSqFtLabel" class="font-medium rg-calc-active-toggle-text">Sq/Ft</span>
+                        <label class="rg-calc-toggle-switch">
+                            <input type="checkbox" id="lawnAreaToggle">
+                            <span class="rg-calc-toggle-slider"></span>
+                        </label>
+                        <span id="lawnAcresLabel" class="font-medium">Acres</span>
+                    </div>
+                </div>
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label>Services:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center"><input type="checkbox" id="lawnMowing" checked><span class="ml-2">Lawn Mowing</span></label>
+                            <div id="lawnMowingInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="lawnMowingArea" class="rg-form-control" value="500" min="0">
+                                    <span class="rg-calc-unit">sq.ft</span>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center"><input type="checkbox" id="lawnAeration"><span class="ml-2">Lawn Aeration</span></label>
+                            <div id="lawnAerationInputs" class="service-input-container hidden">
+                                <select id="lawnAerationType" class="rg-form-control mb-2">
+                                    <option value="liquid">Liquid</option>
+                                    <option value="core">Core</option>
+                                </select>
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="lawnAerationArea" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">sq.ft</span>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center"><input type="checkbox" id="lawnDethatching"><span class="ml-2">Dethatching</span></label>
+                            <div id="lawnDethatchingInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="lawnDethatchingArea" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">sq.ft</span>
+                                </div>
+                            </div>
+                            
+                            <label class="flex items-center"><input type="checkbox" id="lawnFertilization"><span class="ml-2">Fertilization</span></label>
+                            <div id="lawnFertilizationInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="lawnFertilizationArea" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">sq.ft</span>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center"><input type="checkbox" id="lawnMulchCleanUp"><span class="ml-2">Mulch Clean Up</span></label>
+                            <div id="lawnMulchCleanUpInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="lawnMulchCleanUpAmount" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">bags</span>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center"><input type="checkbox" id="lawnSeeding"><span class="ml-2">Seeding</span></label>
+                            <div id="lawnSeedingInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="lawnSeedingArea" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">sq.ft</span>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center"><input type="checkbox" id="lawnLeafRemoval"><span class="ml-2">Leaf Removal</span></label>
+                            <div id="lawnLeafRemovalInputs" class="service-input-container hidden">
+                                 <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="lawnLeafRemovalHours" class="rg-form-control" value="0" min="0" step="0.5">
+                                    <span class="rg-calc-unit">hours</span>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center"><input type="checkbox" id="lawnYardCleanup"><span class="ml-2">Yard Cleanup</span></label>
+                            <div id="lawnYardCleanupInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="lawnYardCleanupHours" class="rg-form-control" value="0" min="0" step="0.5">
+                                    <span class="rg-calc-unit">hours</span>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center"><input type="checkbox" id="lawnWeedControl"><span class="ml-2">Weed Control</span></label>
+                            <div id="lawnWeedControlInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="lawnWeedControlArea" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">sq.ft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAINTING COST CALCULATOR FORM -->
+            <div id="painting-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Painting Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Calculation is based on:</p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <span id="paintingSqFtLabel" class="font-medium rg-calc-active-toggle-text">Sq/Ft</span>
+                        <label class="rg-calc-toggle-switch">
+                            <input type="checkbox" id="paintingAreaToggle">
+                            <span class="rg-calc-toggle-slider"></span>
+                        </label>
+                        <span id="paintingRoomsLabel" class="font-medium">Rooms</span>
+                    </div>
+                </div>
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group" id="paintingAreaInputGroup">
+                        <label id="paintingAreaLabel">Area (Sq.Ft.):</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="paintingAreaValue" class="rg-form-control" value="1000" min="1">
+                            <span class="rg-calc-unit" id="paintingAreaUnit">sq.ft</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="paintingServiceType">Service Type:</label>
+                        <select id="paintingServiceType" class="rg-form-control">
+                            <option value="interior">Interior Painting</option>
+                            <option value="exterior">Exterior Painting</option>
+                            <option value="both">Interior & Exterior</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="paintingNumCoats">Number of Coats:</label>
+                        <select id="paintingNumCoats" class="rg-form-control">
+                            <option value="1">1 Coat</option>
+                            <option value="2">2 Coats</option>
+                            <option value="3">3+ Coats</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="paintingPaintQuality">Paint Quality:</label>
+                        <select id="paintingPaintQuality" class="rg-form-control">
+                            <option value="standard">Standard</option>
+                            <option value="premium">Premium</option>
+                            <option value="eco">Eco-Friendly</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center"><input type="checkbox" id="paintingWallPrep"><span class="ml-2">Wall Prep / Patching</span></label>
+                            <label class="flex items-center"><input type="checkbox" id="paintingTrimPainting"><span class="ml-2">Trim Painting</span></label>
+                            <label class="flex items-center"><input type="checkbox" id="paintingCeilingPainting"><span class="ml-2">Ceiling Painting</span></label>
+                            <label class="flex items-center"><input type="checkbox" id="paintingDeckStaining"><span class="ml-2">Deck Staining</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RECYCLING SERVICES COST CALCULATOR FORM -->
+            <div id="recycling-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Recycling Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost of your recycling needs.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="recyclingPickupFrequency">Pickup Frequency:</label>
+                        <select id="recyclingPickupFrequency" class="rg-form-control">
+                            <option value="oneTime">One-Time Pickup</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="biWeekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="recyclingNumStandardBins">Number of Standard Recycling Bins (e.g., 65-gallon):</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="recycling" data-type="numStandardBins" data-delta="-1">-</button>
+                            <span id="recyclingNumStandardBinsValue" class="rg-calc-counter-value">0</span>
+                            <button class="rg-calc-counter-button" data-industry="recycling" data-type="numStandardBins" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Specialty Item Removal:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="recyclingRemoveAppliance">
+                                <span class="ml-2">Large Appliance (Fridge, Washer, etc.)</span>
+                            </label>
+                            <div id="recyclingApplianceInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="recyclingNumAppliances" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">items</span>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center">
+                                <input type="checkbox" id="recyclingRemoveElectronics">
+                                <span class="ml-2">Electronics / E-Waste (TVs, Computers)</span>
+                            </label>
+                            <div id="recyclingElectronicsInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="recyclingNumElectronics" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">items</span>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center">
+                                <input type="checkbox" id="recyclingRemoveTires">
+                                <span class="ml-2">Tires</span>
+                            </label>
+                            <div id="recyclingTiresInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="recyclingNumTires" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">items</span>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center">
+                                <input type="checkbox" id="recyclingRemoveFurniture">
+                                <span class="ml-2">Furniture (Sofa, Mattress, etc.)</span>
+                            </label>
+                            <div id="recyclingFurnitureInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="recyclingNumFurniture" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">items</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Additional Services:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="recyclingDocumentShredding">
+                                <span class="ml-2">On-Site Document Shredding</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="recyclingHazardousWaste">
+                                <span class="ml-2">Hazardous Waste Disposal</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WINDOW CLEANING COST CALCULATOR FORM -->
+            <div id="window-cleaning-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Window Cleaning Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate your window cleaning service cost.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="windowNumStandardWindows">Number of Standard Windows:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="windowCleaning" data-type="numStandardWindows" data-delta="-1">-</button>
+                            <span id="windowNumStandardWindowsValue" class="rg-calc-counter-value">0</span>
+                            <button class="rg-calc-counter-button" data-industry="windowCleaning" data-type="numStandardWindows" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="windowNumFrenchPanes">Number of French Panes:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="windowCleaning" data-type="numFrenchPanes" data-delta="-1">-</button>
+                            <span id="windowNumFrenchPanesValue" class="rg-calc-counter-value">0</span>
+                            <button class="rg-calc-counter-button" data-industry="windowCleaning" data-type="numFrenchPanes" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="windowNumSlidingDoors">Number of Sliding Doors:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="windowCleaning" data-type="numSlidingDoors" data-delta="-1">-</button>
+                            <span id="windowNumSlidingDoorsValue" class="rg-calc-counter-value">0</span>
+                            <button class="rg-calc-counter-button" data-industry="windowCleaning" data-type="numSlidingDoors" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="windowStoryHeight">Story Height:</label>
+                        <select id="windowStoryHeight" class="rg-form-control">
+                            <option value="1">1 Story</option>
+                            <option value="2">2 Story</option>
+                            <option value="3">3+ Story</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="windowCleaningType">Cleaning Type:</label>
+                        <select id="windowCleaningType" class="rg-form-control">
+                            <option value="interior-exterior">Interior & Exterior</option>
+                            <option value="exterior-only">Exterior Only</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="windowScreenCleaningCheckbox">
+                                <span class="ml-2">Screen Cleaning</span>
+                            </label>
+                            <div id="windowScreenCleaningInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="windowNumScreens" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">screens</span>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center">
+                                <input type="checkbox" id="windowTrackCleaningCheckbox">
+                                <span class="ml-2">Window Track Cleaning</span>
+                            </label>
+                            
+                            <label class="flex items-center">
+                                <input type="checkbox" id="windowHardWaterCheckbox">
+                                <span class="ml-2">Hard Water Stain Removal</span>
+                            </label>
+                            <div id="windowHardWaterInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="windowNumHardWaterWindows" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">windows</span>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center">
+                                <input type="checkbox" id="windowSkylightCleaningCheckbox">
+                                <span class="ml-2">Skylight Cleaning</span>
+                            </label>
+                            <div id="windowSkylightCleaningInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="windowNumSkylights" class="rg-form-control" value="0" min="0">
+                                    <span class="rg-calc-unit">skylights</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POOPER SCOOPER SERVICES COST CALCULATOR FORM -->
+            <div id="pooper-scooper-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Pooper Scooper Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for maintaining a clean yard.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="pooperScooperNumDogs">Number of Dogs:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="pooperScooper" data-type="numDogs" data-delta="-1">-</button>
+                            <span id="pooperScooperNumDogsValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="pooperScooper" data-type="numDogs" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="pooperScooperServiceFrequency">Service Frequency:</label>
+                        <select id="pooperScooperServiceFrequency" class="rg-form-control">
+                            <option value="weekly">Weekly</option>
+                            <option value="biWeekly">Bi-Weekly</option>
+                            <option value="twiceWeekly">Twice a Week</option>
+                            <option value="oneTime">One-Time Cleanup</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="pooperScooperYardSizeGroup">
+                        <label for="pooperScooperYardSize">Yard Size:</label>
+                        <select id="pooperScooperYardSize" class="rg-form-control">
+                            <option value="small">Small (up to 0.1 acre)</option>
+                            <option value="medium">Medium (0.1 to 0.25 acre)</option>
+                            <option value="large">Large (0.25 to 0.5 acre)</option>
+                            <option value="extraLarge">Extra-Large (over 0.5 acre)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="pooperScooperInitialCleanupConditionGroup">
+                        <label for="pooperScooperInitialCleanupCondition">Initial Cleanup Condition:</label>
+                        <select id="pooperScooperInitialCleanupCondition" class="rg-form-control">
+                            <option value="average">Average (recent)</option>
+                            <option value="moderate">Moderate (a few weeks)</option>
+                            <option value="severe">Severe (months, very heavy)</option>
+                        </select>
+                    </div>
+
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="pooperScooperWasteHauling">
+                                <span class="ml-2">Waste Hauling/Disposal (if not standard)</span>
+                            </label>
+                            
+                            <label class="flex items-center">
+                                <input type="checkbox" id="pooperScooperYardDeodorizing">
+                                <span class="ml-2">Yard Deodorizing/Sanitizing</span>
+                            </label>
+                            
+                            <label class="flex items-center">
+                                <input type="checkbox" id="pooperScooperPatioHosing">
+                                <span class="ml-2">Patio/Deck Hosing</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROPERTY MAINTENANCE COST CALCULATOR FORM -->
+            <div id="property-maintenance-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Property Maintenance Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost of your property maintenance needs.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="propertyMaintenancePropertyType">Property Type:</label>
+                        <select id="propertyMaintenancePropertyType" class="rg-form-control">
+                            <option value="smallResidential">Small Residential (e.g., Condo, Townhouse)</option>
+                            <option value="mediumResidential">Medium Residential (e.g., Standard House)</option>
+                            <option value="largeResidential">Large Residential (e.g., Large House, Estate)</option>
+                            <option value="smallCommercial">Small Commercial (e.g., Small Office, Retail)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="propertyMaintenanceServiceFrequency">Service Frequency:</label>
+                        <select id="propertyMaintenanceServiceFrequency" class="rg-form-control">
+                            <option value="oneTime">One-Time Service</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="quarterly">Quarterly</option>
+                            <option value="annually">Annually</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="propertyMaintenanceEstimatedHours">Estimated General Hours:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="propertyMaintenance" data-type="estimatedHours" data-delta="-1">-</button>
+                            <span id="propertyMaintenanceEstimatedHoursValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="propertyMaintenance" data-type="estimatedHours" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="propertyMaintenanceHourlyRate">Hourly Rate (per person):</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="propertyMaintenanceHourlyRate" class="rg-form-control" value="70" min="0">
+                            <span class="rg-calc-unit">/hour</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Specific Tasks / Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="propertyMaintenanceGutterCleaning">
+                                <span class="ml-2">Gutter Cleaning</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="propertyMaintenanceBasicLandscaping">
+                                <span class="ml-2">Basic Landscaping (pruning, weeding)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="propertyMaintenanceFilterReplacement">
+                                <span class="ml-2">Filter Replacement (HVAC/Water)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="propertyMaintenancePressureWashingSmall">
+                                <span class="ml-2">Pressure Washing (Small Areas)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="propertyMaintenanceMinorPlumbing">
+                                <span class="ml-2">Minor Plumbing Repair (e.g., leaky faucet)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="propertyMaintenanceMinorElectrical">
+                                <span class="ml-2">Minor Electrical Repair (e.g., light fixture)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POOL & SPA SERVICES COST CALCULATOR FORM -->
+            <div id="pool-spa-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Pool & Spa Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost of your pool and spa maintenance.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="poolSpaType">Pool / Spa Type:</label>
+                        <select id="poolSpaType" class="rg-form-control">
+                            <option value="ingroundPool">In-ground Pool</option>
+                            <option value="abovegroundPool">Above-ground Pool</option>
+                            <option value="hotTubSpa">Hot Tub / Spa</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="poolSize">Pool Size:</label>
+                        <select id="poolSize" class="rg-form-control">
+                            <option value="small">Small (up to 10,000 gallons)</option>
+                            <option value="medium">Medium (10,001 - 20,000 gallons)</option>
+                            <option value="large">Large (20,001+ gallons)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="poolSpaServiceFrequency">Service Frequency:</label>
+                        <select id="poolSpaServiceFrequency" class="rg-form-control">
+                            <option value="weekly">Weekly</option>
+                            <option value="biWeekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="oneTime">One-Time Cleanup</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Specific Tasks / Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="poolSpaOpeningClosing">
+                                <span class="ml-2">Pool Opening/Closing</span>
+                            </label>
+                            <div id="poolSpaOpeningClosingInputs" class="service-input-container hidden">
+                                <select id="poolSpaOpeningClosingType" class="rg-form-control">
+                                    <option value="opening">Opening</option>
+                                    <option value="closing">Closing</option>
+                                    <option value="both">Both</option>
+                                </select>
+                            </div>
+
+                            <label class="flex items-center">
+                                <input type="checkbox" id="poolSpaFilterCleaning">
+                                <span class="ml-2">Filter Cleaning/Replacement</span>
+                            </label>
+                            
+                            <label class="flex items-center">
+                                <input type="checkbox" id="poolSpaAlgaeTreatment">
+                                <span class="ml-2">Algae Treatment</span>
+                            </label>
+
+                            <label class="flex items-center">
+                                <input type="checkbox" id="poolSpaEquipmentDiagnostics">
+                                <span class="ml-2">Equipment Diagnostics/Minor Repair</span>
+                            </label>
+
+                            <label class="flex items-center">
+                                <input type="checkbox" id="poolSpaSaltCellCleaning">
+                                <span class="ml-2">Salt Cell Cleaning</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRESSURE WASHING COST CALCULATOR FORM -->
+            <div id="pressure-washing-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Pressure Washing Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost of your pressure washing service.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="pressureWashingSurfaceType">Surface Type:</label>
+                        <select id="pressureWashingSurfaceType" class="rg-form-control">
+                            <option value="driveway">Driveway</option>
+                            <option value="patio">Patio</option>
+                            <option value="siding">Siding</option>
+                            <option value="deck">Deck</option>
+                            <option value="fence">Fence</option>
+                            <option value="roof">Roof</option>
+                            <option value="other">Other/Custom (hourly)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="pressureWashingAreaInputGroup">
+                        <label for="pressureWashingAreaValue">Area (Sq.Ft.):</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="pressureWashingAreaValue" class="rg-form-control" value="500" min="0">
+                            <span class="rg-calc-unit">sq.ft</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="pressureWashingHourlyInputGroup">
+                        <label for="pressureWashingHourlyValue">Estimated Hours:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="pressureWashingHourlyValue" class="rg-form-control" value="1" min="0.5" step="0.5">
+                            <span class="rg-calc-unit">hours</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group" id="pressureWashingMaterialTypeGroup">
+                        <label for="pressureWashingMaterialType">Material:</label>
+                        <select id="pressureWashingMaterialType" class="rg-form-control">
+                            <option value="concrete">Concrete</option>
+                            <option value="wood">Wood</option>
+                            <option value="vinyl">Vinyl Siding</option>
+                            <option value="stucco">Stucco</option>
+                            <option value="asphaltShingle">Asphalt Shingle (Roof)</option>
+                            <option value="tile">Tile (Roof)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="pressureWashingDirtCondition">Condition / Dirt Level:</label>
+                        <select id="pressureWashingDirtCondition" class="rg-form-control">
+                            <option value="light">Light (Dust, cobwebs)</option>
+                            <option value="moderate">Moderate (Some grime, minor algae)</option>
+                            <option value="heavy">Heavy (Deep grime, significant mold/algae)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="pressureWashingStoryHeightGroup">
+                        <label for="pressureWashingStoryHeight">Story Height:</label>
+                        <select id="pressureWashingStoryHeight" class="rg-form-control">
+                            <option value="1">1 Story</option>
+                            <option value="2">2 Story</option>
+                            <option value="3">3+ Story</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="pressureWashingSealingCheckbox">
+                                <span class="ml-2">Sealing / Staining (Deck/Concrete)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="pressureWashingGutterBrighteningCheckbox">
+                                <span class="ml-2">Gutter Brightening (Exterior)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="pressureWashingMoldMildewTreatmentCheckbox">
+                                <span class="ml-2">Mold/Mildew Specific Treatment</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAVING SERVICES COST CALCULATOR FORM -->
+            <div id="paving-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Paving Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your paving project.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="pavingServiceType">Service Type:</label>
+                        <select id="pavingServiceType" class="rg-form-control">
+                            <option value="newInstallation">New Installation</option>
+                            <option value="resurfacing">Resurfacing / Overlay</option>
+                            <option value="repairPatching">Repair / Patching</option>
+                            <option value="removalReplacement">Removal & Replacement</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="pavingSurfaceType">Surface Type:</label>
+                        <select id="pavingSurfaceType" class="rg-form-control">
+                            <option value="driveway">Driveway</option>
+                            <option value="pathway">Pathway</option>
+                            <option value="parkingLot">Parking Lot</option>
+                            <option value="patio">Patio</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="pavingMaterial">Paving Material:</label>
+                        <select id="pavingMaterial" class="rg-form-control">
+                            <option value="asphalt">Asphalt</option>
+                            <option value="concrete">Concrete</option>
+                            <option value="pavers">Pavers / Brick</option>
+                            <option value="gravel">Gravel</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="pavingAreaInputGroup">
+                        <label for="pavingAreaValue">Area (Sq.Ft.):</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="pavingAreaValue" class="rg-form-control" value="500" min="0">
+                            <span class="rg-calc-unit">sq.ft</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group" id="pavingThicknessGroup">
+                        <label for="pavingThickness">Thickness (inches):</label>
+                        <select id="pavingThickness" class="rg-form-control">
+                            <option value="2">2 inches</option>
+                            <option value="3">3 inches</option>
+                            <option value="4">4 inches</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="pavingSitePreparation">Site Preparation Level:</label>
+                        <select id="pavingSitePreparation" class="rg-form-control">
+                            <option value="basic">Basic (Cleared site)</option>
+                            <option value="moderate">Moderate (Some grading/leveling)</option>
+                            <option value="extensive">Extensive (Heavy grading, drainage work)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="pavingRepairPatchingGroup">
+                        <label for="pavingNumPatches">Number of Patches/Repair Areas:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="paving" data-type="numPatches" data-delta="-1">-</button>
+                            <span id="pavingNumPatchesValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="paving" data-type="numPatches" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="pavingSealcoatingCheckbox">
+                                <span class="ml-2">Sealcoating (for Asphalt)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="pavingDrainageSolutionsCheckbox">
+                                <span class="ml-2">Drainage Solutions</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="pavingEdgingBordersCheckbox">
+                                <span class="ml-2">Edging / Borders</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="pavingLineStripingCheckbox">
+                                <span class="ml-2">Line Striping (for Parking Lots)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSTALLATION SERVICES COST CALCULATOR FORM -->
+            <div id="installation-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Installation Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your home installation project.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="installationType">Type of Installation:</label>
+                        <select id="installationType" class="rg-form-control">
+                            <option value="appliance">Appliance Installation</option>
+                            <option value="lightFixture">Light Fixture/Fan</option>
+                            <option value="faucetToilet">Faucet/Toilet</option>
+                            <option value="tvMount">TV Mounting</option>
+                            <option value="shelfCabinet">Shelf/Cabinet Mounting</option>
+                            <option value="securityCamera">Security Camera System</option>
+                            <option value="other">Other/General Installation (hourly)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="installationNumUnitsGroup">
+                        <label for="installationNumUnits">Number of Units/Items:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="installation" data-type="numUnits" data-delta="-1">-</button>
+                            <span id="installationNumUnitsValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="installation" data-type="numUnits" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="installationEstimatedHoursGroup">
+                        <label for="installationEstimatedHours">Estimated Hours for Installation:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="installationEstimatedHours" class="rg-form-control" value="1" min="0.5" step="0.5">
+                            <span class="rg-calc-unit">hours</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="installationComplexity">Complexity:</label>
+                        <select id="installationComplexity" class="rg-form-control">
+                            <option value="simple">Simple (Direct replacement, easy access)</option>
+                            <option value="moderate">Moderate (Minor modifications, some adjustments)</option>
+                            <option value="complex">Complex (New lines, significant alterations)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Existing Item Removal Needed?</label>
+                        <label class="flex items-center mt-2">
+                            <input type="checkbox" id="installationRemovalNeeded">
+                            <span class="ml-2">Yes, remove old item(s)</span>
+                        </label>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="installationDisposalOfOldItems">
+                                <span class="ml-2">Disposal of Old Items</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="installationMinorModifications">
+                                <span class="ml-2">Minor Wall/Cabinet Modifications</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="installationTestingCalibration">
+                                <span class="ml-2">System Testing & Calibration</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JUNK REMOVAL COST CALCULATOR FORM -->
+            <div id="junk-removal-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Junk Removal Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost to clear out your unwanted items.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="junkRemovalVolume">Volume of Junk:</label>
+                        <select id="junkRemovalVolume" class="rg-form-control">
+                            <option value="minCharge">Minimum Charge (1-2 small items)</option>
+                            <option value="oneEighth">1/8 Truckload</option>
+                            <option value="oneQuarter">1/4 Truckload</option>
+                            <option value="half">1/2 Truckload</option>
+                            <option value="threeQuarter">3/4 Truckload</option>
+                            <option value="full">Full Truckload</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="junkRemovalType">Type of Junk:</label>
+                        <select id="junkRemovalType" class="rg-form-control">
+                            <option value="general">General Household Debris</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="appliances">Appliances</option>
+                            <option value="yardWaste">Yard Waste</option>
+                            <option value="construction">Construction Debris</option>
+                            <option value="mixed">Mixed Load</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="junkRemovalAccessibility">Accessibility:</label>
+                        <select id="junkRemovalAccessibility" class="rg-form-control">
+                            <option value="curbside">Curbside / Easy Access</option>
+                            <option value="basementAttic">Basement / Attic / Multiple Floors</option>
+                            <option value="difficult">Difficult Access (tight spaces, stairs)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Special Surcharges (per item):</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="junkRemovalMattressSurcharge">
+                                <span class="ml-2">Mattress Surcharge</span>
+                            </label>
+                            <div id="junkRemovalMattressInputs" class="service-input-container hidden">
+                                <div class="rg-calc-counter-input">
+                                    <button class="rg-calc-counter-button" data-industry="junkRemoval" data-type="mattresses" data-delta="-1">-</button>
+                                    <span id="junkRemovalMattressesValue" class="rg-calc-counter-value">0</span>
+                                    <button class="rg-calc-counter-button" data-industry="junkRemoval" data-type="mattresses" data-delta="1">+</button>
+                                </div>
+                            </div>
+                            
+                            <label class="flex items-center">
+                                <input type="checkbox" id="junkRemovalTireSurcharge">
+                                <span class="ml-2">Tire Surcharge</span>
+                            </label>
+                             <div id="junkRemovalTireInputs" class="service-input-container hidden">
+                                <div class="rg-calc-counter-input">
+                                    <button class="rg-calc-counter-button" data-industry="junkRemoval" data-type="tires" data-delta="-1">-</button>
+                                    <span id="junkRemovalTiresValue" class="rg-calc-counter-value">0</span>
+                                    <button class="rg-calc-counter-button" data-industry="junkRemoval" data-type="tires" data-delta="1">+</button>
+                                </div>
+                            </div>
+
+                            <label class="flex items-center">
+                                <input type="checkbox" id="junkRemovalHeavyItemSurcharge">
+                                <span class="ml-2">Heavy Item Surcharge (e.g., Concrete, Pianos)</span>
+                            </label>
+                             <div id="junkRemovalHeavyItemInputs" class="service-input-container hidden">
+                                <div class="rg-calc-counter-input">
+                                    <button class="rg-calc-counter-button" data-industry="junkRemoval" data-type="heavyItems" data-delta="-1">-</button>
+                                    <span id="junkRemovalHeavyItemsValue" class="rg-calc-counter-value">0</span>
+                                    <button class="rg-calc-counter-button" data-industry="junkRemoval" data-type="heavyItems" data-delta="1">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Additional Services:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="junkRemovalDemolition">
+                                <span class="ml-2">Demolition / Dismantling (hourly)</span>
+                            </label>
+                            <div id="junkRemovalDemolitionInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="junkRemovalDemolitionHours" class="rg-form-control" value="1" min="0.5" step="0.5">
+                                    <span class="rg-calc-unit">hours</span>
+                                </div>
+                            </div>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="junkRemovalCleanUpAfter">
+                                <span class="ml-2">Site Cleanup After Removal</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IRRIGATION SERVICES COST CALCULATOR FORM -->
+            <div id="irrigation-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Irrigation Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your irrigation system needs.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="irrigationServiceType">Service Type:</label>
+                        <select id="irrigationServiceType" class="rg-form-control">
+                            <option value="newInstallation">New System Installation</option>
+                            <option value="repairTroubleshooting">Repair / Troubleshooting</option>
+                            <option value="seasonalMaintenance">Seasonal Maintenance (Winterization/Startup)</option>
+                            <option value="systemAudit">System Audit / Optimization</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="irrigationNumZonesGroup">
+                        <label for="irrigationNumZones">Number of Zones:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="irrigation" data-type="numZones" data-delta="-1">-</button>
+                            <span id="irrigationNumZonesValue" class="rg-calc-counter-value">4</span>
+                            <button class="rg-calc-counter-button" data-industry="irrigation" data-type="numZones" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="irrigationEstimatedHoursGroup">
+                        <label for="irrigationEstimatedHours">Estimated Repair/Audit Hours:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="irrigationEstimatedHours" class="rg-form-control" value="1" min="0.5" step="0.5">
+                            <span class="rg-calc-unit">hours</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="irrigationPropertySize">Property Size:</label>
+                        <select id="irrigationPropertySize" class="rg-form-control">
+                            <option value="small">Small (under 1/4 acre)</option>
+                            <option value="medium">Medium (1/4 - 1/2 acre)</option>
+                            <option value="large">Large (over 1/2 acre)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="irrigationDripSystem">
+                                <span class="ml-2">Drip System Installation</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="irrigationRainSensor">
+                                <span class="ml-2">Rain Sensor / Smart Controller</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="irrigationBackflowTesting">
+                                <span class="ml-2">Backflow Testing</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FENCE SERVICES COST CALCULATOR FORM -->
+            <div id="fence-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Fence Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your fencing project.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="fenceServiceType">Service Type:</label>
+                        <select id="fenceServiceType" class="rg-form-control">
+                            <option value="newInstallation">New Fence Installation</option>
+                            <option value="repair">Repair Existing Fence</option>
+                            <option value="stainingSealing">Staining / Sealing</option>
+                            <option value="removal">Fence Removal Only</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="fenceLinearFeetGroup">
+                        <label for="fenceLinearFeet">Total Linear Feet:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="fenceLinearFeet" class="rg-form-control" value="100" min="0">
+                            <span class="rg-calc-unit">linear ft</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group" id="fenceMaterialGroup">
+                        <label for="fenceMaterial">Fence Material:</label>
+                        <select id="fenceMaterial" class="rg-form-control">
+                            <option value="wood">Wood (Picket, Privacy)</option>
+                            <option value="vinyl">Vinyl</option>
+                            <option value="chainLink">Chain Link</option>
+                            <option value="aluminumSteel">Aluminum / Steel</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="fenceHeight">Fence Height:</label>
+                        <select id="fenceHeight" class="rg-form-control">
+                            <option value="4">4 ft</option>
+                            <option value="5">5 ft</option>
+                            <option value="6">6 ft</option>
+                            <option value="8">8 ft+</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="fenceRepairSeverityGroup">
+                        <label for="fenceRepairSeverity">Repair Severity:</label>
+                        <select id="fenceRepairSeverity" class="rg-form-control">
+                            <option value="minor">Minor (1-2 pickets, loose post)</option>
+                            <option value="moderate">Moderate (Section replacement, multiple posts)</option>
+                            <option value="extensive">Extensive (Major section, gate repair)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="fenceGateInstallation">
+                                <span class="ml-2">Gate Installation</span>
+                            </label>
+                             <div id="fenceGateInstallationInputs" class="service-input-container hidden">
+                                <div class="rg-calc-counter-input">
+                                    <button class="rg-calc-counter-button" data-industry="fence" data-type="numGates" data-delta="-1">-</button>
+                                    <span id="fenceNumGatesValue" class="rg-calc-counter-value">1</span>
+                                    <button class="rg-calc-counter-button" data-industry="fence" data-type="numGates" data-delta="1">+</button>
+                                </div>
+                            </div>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="fenceOldFenceRemoval">
+                                <span class="ml-2">Old Fence Removal</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="fencePostCaps">
+                                <span class="ml-2">Decorative Post Caps</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JANITORIAL SERVICES COST CALCULATOR FORM -->
+            <div id="janitorial-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Janitorial Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your commercial cleaning needs.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="janitorialPropertyType">Property Type:</label>
+                        <select id="janitorialPropertyType" class="rg-form-control">
+                            <option value="office">Office Space</option>
+                            <option value="retail">Retail Store</option>
+                            <option value="medical">Medical Facility</option>
+                            <option value="restaurant">Restaurant</option>
+                            <option value="industrial">Industrial/Warehouse</option>
+                            <option value="other">Other Commercial</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="janitorialAreaSqFt">Total Area (Sq.Ft.):</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="janitorialAreaSqFt" class="rg-form-control" value="2000" min="100">
+                            <span class="rg-calc-unit">sq.ft</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="janitorialServiceFrequency">Service Frequency:</label>
+                        <select id="janitorialServiceFrequency" class="rg-form-control">
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="biWeekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="oneTime">One-Time / Deep Clean</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="janitorialNumRestrooms">Number of Restrooms:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="janitorial" data-type="numRestrooms" data-delta="-1">-</button>
+                            <span id="janitorialNumRestroomsValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="janitorial" data-type="numRestrooms" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Specific Tasks / Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="janitorialFloorCare">
+                                <span class="ml-2">Specialty Floor Care (Buffing, Stripping)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="janitorialWindowCleaning">
+                                <span class="ml-2">Interior Window Cleaning</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="janitorialTrashRemoval">
+                                <span class="ml-2">High-Volume Trash Removal</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="janitorialSuppliesProvided">
+                                <span class="ml-2">Client-Specific Supplies Provided</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FLOORING SERVICES COST CALCULATOR FORM -->
+            <div id="flooring-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Flooring Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your flooring project.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="flooringServiceType">Service Type:</label>
+                        <select id="flooringServiceType" class="rg-form-control">
+                            <option value="installation">New Flooring Installation</option>
+                            <option value="repair">Repair Existing Flooring</option>
+                            <option value="refinishing">Refinishing Hardwood</option>
+                            <option value="removalDisposal">Old Flooring Removal & Disposal</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="flooringMaterialType">Flooring Material:</label>
+                        <select id="flooringMaterialType" class="rg-form-control">
+                            <option value="hardwood">Hardwood</option>
+                            <option value="laminate">Laminate</option>
+                            <option value="vinyl">Vinyl / LVP</option>
+                            <option value="tile">Tile</option>
+                            <option value="carpet">Carpet</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="flooringAreaSqFt">Area (Sq.Ft.):</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="flooringAreaSqFt" class="rg-form-control" value="200" min="10">
+                            <span class="rg-calc-unit">sq.ft</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="flooringSubfloorCondition">Subfloor Condition:</label>
+                        <select id="flooringSubfloorCondition" class="rg-form-control">
+                            <option value="good">Good (ready for install)</option>
+                            <option value="minorPrep">Minor Prep Needed (light sanding/leveling)</option>
+                            <option value="majorPrep">Major Prep Needed (significant repair/leveling)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="flooringBaseboardInstallation">
+                                <span class="ml-2">Baseboard Installation</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="flooringFurnitureMoving">
+                                <span class="ml-2">Furniture Moving</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="flooringStairInstallation">
+                                <span class="ml-2">Stair Installation (per stair)</span>
+                            </label>
+                            <div id="flooringStairInstallationInputs" class="service-input-container hidden">
+                                <div class="rg-calc-counter-input">
+                                    <button class="rg-calc-counter-button" data-industry="flooring" data-type="numStairs" data-delta="-1">-</button>
+                                    <span id="flooringNumStairsValue" class="rg-calc-counter-value">1</span>
+                                    <button class="rg-calc-counter-button" data-industry="flooring" data-type="numStairs" data-delta="1">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOG WALKING COST CALCULATOR FORM -->
+            <div id="dog-walking-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Dog Walking Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for professional dog walking services.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="dogWalkingNumDogs">Number of Dogs:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="dogWalking" data-type="numDogs" data-delta="-1">-</button>
+                            <span id="dogWalkingNumDogsValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="dogWalking" data-type="numDogs" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="dogWalkingDuration">Walk Duration:</label>
+                        <select id="dogWalkingDuration" class="rg-form-control">
+                            <option value="15">15 Minutes</option>
+                            <option value="30">30 Minutes</option>
+                            <option value="45">45 Minutes</option>
+                            <option value="60">60 Minutes</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="dogWalkingFrequency">Frequency:</label>
+                        <select id="dogWalkingFrequency" class="rg-form-control">
+                            <option value="oneTime">One-Time Walk</option>
+                            <option value="daily">Daily (Mon-Fri)</option>
+                            <option value="weekly">Weekly (e.g., 3x/week)</option>
+                            <option value="monthly">Monthly Package</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="dogWalkingWeekendHoliday">
+                                <span class="ml-2">Weekend / Holiday Walk</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="dogWalkingAdditionalServices">
+                                <span class="ml-2">Additional Services (Feeding, Meds)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="dogWalkingPuppySeniorCare">
+                                <span class="ml-2">Puppy / Senior Care Surcharge</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- APPLIANCE REPAIR SERVICES COST CALCULATOR FORM -->
+            <div id="appliance-repair-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Appliance Repair Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost to repair your home appliance.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="applianceType">Appliance Type:</label>
+                        <select id="applianceType" class="rg-form-control">
+                            <option value="refrigerator">Refrigerator</option>
+                            <option value="washer">Washer</option>
+                            <option value="dryer">Dryer</option>
+                            <option value="dishwasher">Dishwasher</option>
+                            <option value="ovenStove">Oven / Stove</option>
+                            <option value="microwave">Microwave</option>
+                            <option value="other">Other Appliance</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="issueSeverity">Issue Severity:</label>
+                        <select id="issueSeverity" class="rg-form-control">
+                            <option value="minor">Minor (e.g., small leak, strange noise)</option>
+                            <option value="moderate">Moderate (e.g., partial malfunction, consistent issue)</option>
+                            <option value="major">Major (e.g., complete breakdown, complex repair)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="repairUrgency">Repair Urgency:</label>
+                        <select id="repairUrgency" class="rg-form-control">
+                            <option value="standard">Standard (next available slot)</option>
+                            <option value="urgent">Urgent (same-day / next-day)</option>
+                            <option value="emergency">Emergency (after-hours / weekend)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Additional Considerations:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="partsNeeded">
+                                <span class="ml-2">Parts Might Be Needed (Diagnostic + Part Cost)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="diagnosticFee">
+                                <span class="ml-2">Include Diagnostic Fee (often waived with repair)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHIMNEY SWEEP SERVICES COST CALCULATOR FORM -->
+            <div id="chimney-sweep-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Chimney Sweep Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your chimney maintenance.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="chimneyServiceType">Service Type:</label>
+                        <select id="chimneyServiceType" class="rg-form-control">
+                            <option value="inspection">Basic Inspection (Level 1)</option>
+                            <option value="sweep">Chimney Sweep (Cleaning)</option>
+                            <option value="inspectionSweep">Inspection & Sweep</option>
+                            <option value="level2Inspection">Level 2 Inspection (Advanced)</option>
+                            <option value="repair">Minor Repair Work (hourly)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="chimneyType">Chimney Type:</label>
+                        <select id="chimneyType" class="rg-form-control">
+                            <option value="standard">Standard Masonry</option>
+                            <option value="prefab">Prefab / Metal</option>
+                            <option value="woodStove">Wood Stove Flue</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="chimneyFlues">Number of Flues:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="chimneySweep" data-type="numFlues" data-delta="-1">-</button>
+                            <span id="chimneyFluesValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="chimneySweep" data-type="numFlues" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="chimneyRepairHoursGroup">
+                        <label for="chimneyRepairHours">Estimated Repair Hours:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="chimneyRepairHours" class="rg-form-control" value="1" min="0.5" step="0.5">
+                            <span class="rg-calc-unit">hours</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="chimneyCreosoteRemoval">
+                                <span class="ml-2">Heavy Creosote Removal</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="chimneyCapInstallation">
+                                <span class="ml-2">Chimney Cap Installation</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="chimneyWaterproofing">
+                                <span class="ml-2">Waterproofing</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARPET CLEANING COST CALCULATOR FORM -->
+            <div id="carpet-cleaning-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Carpet Cleaning Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for professional carpet cleaning.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="carpetCleaningMethod">Cleaning Method:</label>
+                        <select id="carpetCleaningMethod" class="rg-form-control">
+                            <option value="steam">Steam Cleaning (Hot Water Extraction)</option>
+                            <option value="dry">Dry Cleaning</option>
+                            <option value="shampoo">Shampooing</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="carpetCleaningAreaType">Area to be Cleaned:</label>
+                        <select id="carpetCleaningAreaType" class="rg-form-control">
+                            <option value="perRoom">Per Room</option>
+                            <option value="perSqFt">Per Square Foot</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="carpetCleaningNumRoomsGroup">
+                        <label for="carpetCleaningNumRooms">Number of Rooms:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="carpetCleaning" data-type="numRooms" data-delta="-1">-</button>
+                            <span id="carpetCleaningNumRoomsValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="carpetCleaning" data-type="numRooms" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="carpetCleaningAreaSqFtGroup">
+                        <label for="carpetCleaningAreaSqFt">Area (Sq.Ft.):</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="carpetCleaningAreaSqFt" class="rg-form-control" value="200" min="50">
+                            <span class="rg-calc-unit">sq.ft</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="carpetCondition">Carpet Condition:</label>
+                        <select id="carpetCondition" class="rg-form-control">
+                            <option value="light">Light Soilage</option>
+                            <option value="medium">Medium Soilage</option>
+                            <option value="heavy">Heavy Soilage / Stains</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="carpetSpotTreatment">
+                                <span class="ml-2">Spot / Stain Treatment</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="carpetDeodorizing">
+                                <span class="ml-2">Deodorizing</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="carpetProtector">
+                                <span class="ml-2">Carpet Protector Application</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="carpetStairCleaning">
+                                <span class="ml-2">Stair Cleaning (per stair)</span>
+                            </label>
+                            <div id="carpetStairCleaningInputs" class="service-input-container hidden">
+                                <div class="rg-calc-counter-input">
+                                    <button class="rg-calc-counter-button" data-industry="carpetCleaning" data-type="numStairs" data-delta="-1">-</button>
+                                    <span id="carpetCleaningNumStairsValue" class="rg-calc-counter-value">1</span>
+                                    <button class="rg-calc-counter-button" data-industry="carpetCleaning" data-type="numStairs" data-delta="1">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARPENTRY COST CALCULATOR FORM -->
+            <div id="carpentry-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Carpentry Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your carpentry project.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="carpentryProjectType">Project Type:</label>
+                        <select id="carpentryProjectType" class="rg-form-control">
+                            <option value="minorRepair">Minor Repair (e.g., trim, small deck repair)</option>
+                            <option value="framing">Framing (walls, small structure)</option>
+                            <option value="cabinetryBuiltIns">Cabinetry / Built-ins</option>
+                            <option value="deckFenceBuild">Deck / Fence Build (new)</option>
+                            <option value="customWoodwork">Custom Woodwork / Millwork</option>
+                            <option value="other">Other (Hourly)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="carpentryEstimatedHoursGroup">
+                        <label for="carpentryEstimatedHours">Estimated Project Hours:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="carpentryEstimatedHours" class="rg-form-control" value="4" min="1" step="0.5">
+                            <span class="rg-calc-unit">hours</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="carpentryComplexity">Complexity Level:</label>
+                        <select id="carpentryComplexity" class="rg-form-control">
+                            <option value="low">Low (Simple, straightforward)</option>
+                            <option value="medium">Medium (Some detail, moderate skill)</option>
+                            <option value="high">High (Intricate, specialized skill)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Material Quality:</label>
+                        <select id="carpentryMaterialQuality" class="rg-form-control">
+                            <option value="standard">Standard Grade Lumber</option>
+                            <option value="premium">Premium Lumber / Specialty Wood</option>
+                            <option value="reclaimed">Reclaimed / Salvaged Wood</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="carpentryDemolitionRemoval">
+                                <span class="ml-2">Demolition / Old Structure Removal</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="carpentryFinishingStaining">
+                                <span class="ml-2">Finishing / Staining / Painting</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="carpentryPermitAssistance">
+                                <span class="ml-2">Permit Assistance</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GARAGE SERVICES COST CALCULATOR FORM -->
+            <div id="garage-services-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Garage Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your garage door and opener services.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="garageServiceType">Service Type:</label>
+                        <select id="garageServiceType" class="rg-form-control">
+                            <option value="doorRepair">Garage Door Repair</option>
+                            <option value="openerRepair">Garage Door Opener Repair</option>
+                            <option value="newDoorInstall">New Garage Door Installation</option>
+                            <option value="newOpenerInstall">New Opener Installation</option>
+                            <option value="maintenance">Annual Maintenance / Tune-up</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="garageDoorType">Garage Door Type (if applicable):</label>
+                        <select id="garageDoorType" class="rg-form-control">
+                            <option value="single">Single (9x7 ft)</option>
+                            <option value="double">Double (16x7 ft)</option>
+                            <option value="custom">Custom / Oversized</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="garageMaterialType">Door Material (if new install):</label>
+                        <select id="garageMaterialType" class="rg-form-control">
+                            <option value="steel">Steel</option>
+                            <option value="wood">Wood</option>
+                            <option value="aluminum">Aluminum</option>
+                            <option value="fiberglass">Fiberglass</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="garageRepairSeverityGroup">
+                        <label for="garageRepairSeverity">Repair Severity:</label>
+                        <select id="garageRepairSeverity" class="rg-form-control">
+                            <option value="minor">Minor (e.g., spring adjustment, sensor)</option>
+                            <option value="moderate">Moderate (e.g., cable/roller replacement)</option>
+                            <option value="major">Major (e.g., panel replacement, motor issue)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="garageOldDoorRemoval">
+                                <span class="ml-2">Old Door / Opener Removal & Disposal</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="garageKeypadRemote">
+                                <span class="ml-2">Extra Keypad / Remote</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="garageSmartOpener">
+                                <span class="ml-2">Smart Opener Integration</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROFESSIONAL SERVICES COST CALCULATOR FORM (General for various professional home services) -->
+            <div id="professional-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Professional Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for general professional home services (e.g., organizing, consulting).</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="professionalServiceType">Service Category:</label>
+                        <select id="professionalServiceType" class="rg-form-control">
+                            <option value="homeOrganizing">Home Organizing</option>
+                            <option value="designConsultation">Interior Design Consultation</option>
+                            <option value="staging">Home Staging (Consultation)</option>
+                            <option value="personalAssistant">Personal Assistant / Errand Services</option>
+                            <option value="generalConsulting">General Home Consulting</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="professionalEstimatedHours">Estimated Project Hours:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="professionalEstimatedHours" class="rg-form-control" value="4" min="1" step="0.5">
+                            <span class="rg-calc-unit">hours</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="professionalExpertiseLevel">Expertise Level:</label>
+                        <select id="professionalExpertiseLevel" class="rg-form-control">
+                            <option value="standard">Standard Professional</option>
+                            <option value="specialist">Specialist / Certified Expert</option>
+                            <option value="premium">Premium / Highly Experienced</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons / Specifics:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="professionalTravelFee">
+                                <span class="ml-2">Long-Distance Travel Fee</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="professionalMaterialSourcing">
+                                <span class="ml-2">Material Sourcing / Shopping</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="professionalFollowUp">
+                                <span class="ml-2">Follow-up Sessions / Support</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TREE SERVICES COST CALCULATOR FORM -->
+            <div id="tree-services-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Tree Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your tree care needs.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="treeServiceType">Service Type:</label>
+                        <select id="treeServiceType" class="rg-form-control">
+                            <option value="trimmingPruning">Trimming / Pruning</option>
+                            <option value="removalSmall">Tree Removal (Small Tree)</option>
+                            <option value="removalMedium">Tree Removal (Medium Tree)</option>
+                            <option value="removalLarge">Tree Removal (Large Tree)</option>
+                            <option value="stumpGrinding">Stump Grinding</option>
+                            <option value="emergencyRemoval">Emergency Removal</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="treeCount">Number of Trees / Stumps:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="treeServices" data-type="numTreesStumps" data-delta="-1">-</button>
+                            <span id="treeCountValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="treeServices" data-type="numTreesStumps" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="treeAccessibility">Accessibility:</label>
+                        <select id="treeAccessibility" class="rg-form-control">
+                            <option value="easy">Easy Access (open yard)</option>
+                            <option value="moderate">Moderate (near structures, fences)</option>
+                            <option value="difficult">Difficult (tight space, power lines, steep slope)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="treeCondition">Tree Condition:</label>
+                        <select id="treeCondition" class="rg-form-control">
+                            <option value="healthy">Healthy</option>
+                            <option value="diseasedDead">Diseased / Dead</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="treeDebrisRemoval">
+                                <span class="ml-2">Debris Removal / Hauling</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="treeLimbingBranchChipping">
+                                <span class="ml-2">Limbing / Branch Chipping</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="treePermitAssistance">
+                                <span class="ml-2">Permit Assistance</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LOCKSMITH SERVICES COST CALCULATOR FORM -->
+            <div id="locksmith-services-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Locksmith Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your locksmith needs.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="locksmithServiceType">Service Type:</label>
+                        <select id="locksmithServiceType" class="rg-form-control">
+                            <option value="rekey">Rekey Locks</option>
+                            <option value="lockReplace">Replace Lock (Standard Deadbolt/Knob)</option>
+                            <option value="newInstall">New Lock Installation</option>
+                            <option value="emergencyLockout">Emergency Lockout</option>
+                            <option value="keyDuplication">Key Duplication</option>
+                            <option value="otherRepair">Other Repair / Service Call</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="locksmithNumLocksGroup">
+                        <label for="locksmithNumLocks">Number of Locks/Units:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="locksmithServices" data-type="numLocks" data-delta="-1">-</button>
+                            <span id="locksmithNumLocksValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="locksmithServices" data-type="numLocks" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="locksmithRepairHoursGroup">
+                        <label for="locksmithRepairHours">Estimated Repair Hours:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="locksmithRepairHours" class="rg-form-control" value="1" min="0.5" step="0.5">
+                            <span class="rg-calc-unit">hours</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="locksmithLockQuality">Lock Quality/Type:</label>
+                        <select id="locksmithLockQuality" class="rg-form-control">
+                            <option value="standard">Standard (Residential Grade 3)</option>
+                            <option value="highSecurity">High-Security / Smart Lock</option>
+                            <option value="commercial">Commercial Grade</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="locksmithKeyExtraCopies">
+                                <span class="ml-2">Extra Key Copies (per key)</span>
+                            </label>
+                            <div id="locksmithKeyExtraCopiesInputs" class="service-input-container hidden">
+                                <div class="rg-calc-counter-input">
+                                    <button class="rg-calc-counter-button" data-industry="locksmithServices" data-type="numKeys" data-delta="-1">-</button>
+                                    <span id="locksmithNumKeysValue" class="rg-calc-counter-value">1</span>
+                                    <button class="rg-calc-counter-button" data-industry="locksmithServices" data-type="numKeys" data-delta="1">+</button>
+                                </div>
+                            </div>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="locksmithBrokenKeyExtraction">
+                                <span class="ml-2">Broken Key Extraction</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="locksmithSecurityAudit">
+                                <span class="ml-2">Security Audit / Consultation</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PET SERVICES COST CALCULATOR FORM (General for grooming/sitting, not walking) -->
+            <div id="pet-services-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Pet Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for pet grooming, sitting, or boarding.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="petServiceType">Service Type:</label>
+                        <select id="petServiceType" class="rg-form-control">
+                            <option value="grooming">Grooming</option>
+                            <option value="petSitting">Pet Sitting (at client's home)</option>
+                            <option value="boarding">Boarding (at facility)</option>
+                            <option value="daycare">Daycare (daily rate)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="petType">Pet Type:</label>
+                        <select id="petType" class="rg-form-control">
+                            <option value="dog">Dog</option>
+                            <option value="cat">Cat</option>
+                            <option value="otherSmall">Other Small Pet (e.g., bird, hamster)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="petSize">Pet Size (for Dog/Cat):</label>
+                        <select id="petSize" class="rg-form-control">
+                            <option value="small">Small (under 20 lbs)</option>
+                            <option value="medium">Medium (20-50 lbs)</option>
+                            <option value="large">Large (50-90 lbs)</option>
+                            <option value="xLarge">X-Large (90+ lbs)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="petGroomingPackageGroup">
+                        <label for="petGroomingPackage">Grooming Package:</label>
+                        <select id="petGroomingPackage" class="rg-form-control">
+                            <option value="basic">Basic Bath & Brush</option>
+                            <option value="full">Full Groom (Haircut, Bath, Nails)</option>
+                            <option value="premium">Premium (Specialty Shampoo, De-shed)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="petSittingBoardingDurationGroup">
+                        <label for="petSittingBoardingDuration">Duration (Nights/Days):</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="petServices" data-type="duration" data-delta="-1">-</button>
+                            <span id="petSittingBoardingDurationValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="petServices" data-type="duration" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Additional Services:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="petSpecialNeeds">
+                                <span class="ml-2">Special Needs / Medications</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="petExtraPlayTime">
+                                <span class="ml-2">Extra Play Time / Enrichment</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="petTransportation">
+                                <span class="ml-2">Transportation Service</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LANDSCAPING SERVICES COST CALCULATOR FORM (Distinct from Lawn Care - focuses on design/install) -->
+            <div id="landscaping-services-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Landscaping Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your landscaping design and installation project.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="landscapingProjectType">Project Type:</label>
+                        <select id="landscapingProjectType" class="rg-form-control">
+                            <option value="newDesignInstall">New Landscape Design & Install</option>
+                            <option value="renovation">Landscape Renovation / Upgrade</option>
+                            <option value="gardenBedInstall">Garden Bed / Planting Installation</option>
+                            <option value="hardscapingInstall">Hardscaping (Patios, Walkways)</option>
+                            <option value="irrigationInstall">Irrigation System Installation</option>
+                            <option value="otherCustom">Other / Custom Project (hourly)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="landscapingAreaSqFtGroup">
+                        <label for="landscapingAreaSqFt">Area of Project (Sq.Ft.):</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="landscapingAreaSqFt" class="rg-form-control" value="500" min="50">
+                            <span class="rg-calc-unit">sq.ft</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="landscapingEstimatedHoursGroup">
+                        <label for="landscapingEstimatedHours">Estimated Project Hours:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="landscapingEstimatedHours" class="rg-form-control" value="8" min="1" step="0.5">
+                            <span class="rg-calc-unit">hours</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="landscapingDesignComplexity">Design Complexity:</label>
+                        <select id="landscapingDesignComplexity" class="rg-form-control">
+                            <option value="simple">Simple (Basic planting, straight lines)</option>
+                            <option value="moderate">Moderate (Some curves, varied plants, few features)</option>
+                            <option value="complex">Complex (Multi-level, intricate features, extensive planting)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Key Features / Materials:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="landscapingPlanting">
+                                <span class="ml-2">Extensive Planting / Shrubbery</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="landscapingLighting">
+                                <span class="ml-2">Landscape Lighting</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="landscapingWaterFeature">
+                                <span class="ml-2">Water Feature / Pond</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="landscapingRetainingWall">
+                                <span class="ml-2">Retaining Wall (linear ft)</span>
+                            </label>
+                            <div id="landscapingRetainingWallInputs" class="service-input-container hidden">
+                                <div class="rg-calc-item-qty-input-group">
+                                    <input type="number" id="landscapingRetainingWallLength" class="rg-form-control" value="10" min="0">
+                                    <span class="rg-calc-unit">linear ft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HANDYMAN SERVICES COST CALCULATOR FORM -->
+            <div id="handyman-services-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Handyman Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for various home repairs and odd jobs.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="handymanServiceType">Service Type:</label>
+                        <select id="handymanServiceType" class="rg-form-control">
+                            <option value="hourly">Hourly Rate (General Tasks)</option>
+                            <option value="fixtureInstallation">Fixture Installation (Lights, Faucets)</option>
+                            <option value="drywallRepair">Drywall Repair (per hole/area)</option>
+                            <option value="doorWindowRepair">Door / Window Repair</option>
+                            <option value="mounting">Mounting (TVs, Shelves)</option>
+                            <option value="furnitureAssembly">Furniture Assembly</option>
+                            <option value="minorPlumbingElectrical">Minor Plumbing/Electrical (fixed fee)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="handymanEstimatedHoursGroup">
+                        <label for="handymanEstimatedHours">Estimated Hours:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="handymanEstimatedHours" class="rg-form-control" value="2" min="0.5" step="0.5">
+                            <span class="rg-calc-unit">hours</span>
+                        </div>
+                    </div>
+
+                     <div class="rg-form-group hidden" id="handymanNumItemsGroup">
+                        <label for="handymanNumItems">Number of Items/Areas:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="handymanServices" data-type="numItems" data-delta="-1">-</button>
+                            <span id="handymanNumItemsValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="handymanServices" data-type="numItems" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="handymanComplexity">Job Complexity:</label>
+                        <select id="handymanComplexity" class="rg-form-control">
+                            <option value="simple">Simple (Quick, easy fix)</option>
+                            <option value="moderate">Moderate (Requires tools, some skill)</option>
+                            <option value="complex">Complex (Multiple steps, specialized knowledge)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Additional Charges:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="handymanMaterialSourcing">
+                                <span class="ml-2">Material Sourcing / Pickup</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="handymanTravelFee">
+                                <span class="ml-2">Travel Fee (if applicable)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="handymanDemolitionRemoval">
+                                <span class="ml-2">Minor Demolition / Debris Removal</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HVAC SERVICES COST CALCULATOR FORM -->
+            <div id="hvac-services-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">HVAC Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your heating, ventilation, and AC needs.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="hvacServiceType">Service Type:</label>
+                        <select id="hvacServiceType" class="rg-form-control">
+                            <option value="diagnosticRepair">Diagnostic & Repair</option>
+                            <option value="maintenanceTuneUp">Maintenance / Tune-up</option>
+                            <option value="newInstallation">New System Installation</option>
+                            <option value="ductwork">Ductwork Repair / Installation</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="hvacSystemType">System Type:</label>
+                        <select id="hvacSystemType" class="rg-form-control">
+                            <option value="centralAC">Central AC</option>
+                            <option value="furnace">Furnace</option>
+                            <option value="heatPump">Heat Pump</option>
+                            <option value="miniSplit">Ductless Mini-Split</option>
+                            <option value="boiler">Boiler</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="hvacPropertySize">Property Size (Sq.Ft.):</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="hvacPropertySize" class="rg-form-control" value="2000" min="500">
+                            <span class="rg-calc-unit">sq.ft</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="hvacRepairComplexityGroup">
+                        <label for="hvacRepairComplexity">Repair Complexity:</label>
+                        <select id="hvacRepairComplexity" class="rg-form-control">
+                            <option value="minor">Minor (e.g., thermostat, fuse)</option>
+                            <option value="moderate">Moderate (e.g., capacitor, fan motor)</option>
+                            <option value="major">Major (e.g., compressor, coil, refrigerant leak)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="hvacAirQuality">
+                                <span class="ml-2">Air Quality (UV light, purifier)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="hvacSmartThermostat">
+                                <span class="ml-2">Smart Thermostat Installation</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="hvacEmergencyService">
+                                <span class="ml-2">Emergency / After-Hours Service</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="hvacPermitRequired">
+                                <span class="ml-2">Permit Required (for new installs)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ELECTRICAL SERVICES COST CALCULATOR FORM -->
+            <div id="electrical-services-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Electrical Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your electrical repairs and installations.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="electricalServiceType">Service Type:</label>
+                        <select id="electricalServiceType" class="rg-form-control">
+                            <option value="repairTroubleshoot">Repair / Troubleshooting (hourly)</option>
+                            <option value="outletSwitchInstall">Outlet / Switch Installation</option>
+                            <option value="lightFixtureInstall">Light Fixture / Fan Installation</option>
+                            <option value="panelUpgrade">Electrical Panel Upgrade</option>
+                            <option value="rewiring">Full Home Rewiring</option>
+                            <option value="evCharger">EV Charger Installation</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="electricalEstimatedHours">Estimated Hours:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="electricalEstimatedHours" class="rg-form-control" value="2" min="1" step="0.5">
+                            <span class="rg-calc-unit">hours</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="electricalNumUnitsGroup">
+                        <label for="electricalNumUnits">Number of Units/Items:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="electricalServices" data-type="numUnits" data-delta="-1">-</button>
+                            <span id="electricalNumUnitsValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="electricalServices" data-type="numUnits" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="electricalComplexity">Job Complexity:</label>
+                        <select id="electricalComplexity" class="rg-form-control">
+                            <option value="simple">Simple (Visible wiring, easy access)</option>
+                            <option value="moderate">Moderate (Behind walls, minor modifications)</option>
+                            <option value="complex">Complex (Major panel work, new circuits)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Additional Considerations:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="electricalPermitInspection">
+                                <span class="ml-2">Permit & Inspection Fees</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="electricalMaterialCostExtra">
+                                <span class="ml-2">Material Cost (Beyond standard, e.g., high-end fixtures)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="electricalEmergencyService">
+                                <span class="ml-2">Emergency / After-Hours Service</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOFING SERVICES COST CALCULATOR FORM -->
+            <div id="roofing-services-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Roofing Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your roofing project.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="roofingServiceType">Service Type:</label>
+                        <select id="roofingServiceType" class="rg-form-control">
+                            <option value="repair">Roof Repair</option>
+                            <option value="replacement">Full Roof Replacement</option>
+                            <option value="inspection">Roof Inspection</option>
+                            <option value="cleaning">Roof Cleaning (Moss/Algae Removal)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="roofingAreaSqFtGroup">
+                        <label for="roofingAreaSqFt">Roof Area (Sq.Ft.):</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="roofingAreaSqFt" class="rg-form-control" value="1500" min="100">
+                            <span class="rg-calc-unit">sq.ft</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="roofingRepairComplexityGroup">
+                        <label for="roofingRepairComplexity">Repair Complexity:</label>
+                        <select id="roofingRepairComplexity" class="rg-form-control">
+                            <option value="minor">Minor (e.g., few shingles, small leak)</option>
+                            <option value="moderate">Moderate (e.g., section, flashing)</option>
+                            <option value="major">Major (e.g., structural, extensive leak)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group" id="roofingMaterialTypeGroup">
+                        <label for="roofingMaterialType">Roofing Material:</label>
+                        <select id="roofingMaterialType" class="rg-form-control">
+                            <option value="asphaltShingles">Asphalt Shingles</option>
+                            <option value="metal">Metal</option>
+                            <option value="tile">Tile</option>
+                            <option value="woodShake">Wood Shake</option>
+                            <option value="flatRoof">Flat Roof (TPO/EPDM)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="roofingStoryHeight">Story Height:</label>
+                        <select id="roofingStoryHeight" class="rg-form-control">
+                            <option value="1">1 Story</option>
+                            <option value="2">2 Story</option>
+                            <option value="3">3+ Story</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Add-ons:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="roofingOldRoofRemoval">
+                                <span class="ml-2">Old Roof Removal & Disposal</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="roofingGutterWork">
+                                <span class="ml-2">Gutter Repair / Installation</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="roofingSkylightWork">
+                                <span class="ml-2">Skylight Repair / Installation</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="roofingPermitFees">
+                                <span class="ml-2">Permit & Inspection Fees</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLUMBING SERVICES COST CALCULATOR FORM -->
+            <div id="plumbing-services-form" class="rg-calc-form-section hidden">
+                <div class="rg-calc-header">
+                    <h1 class="text-3xl mb-2">Plumbing Services Cost Calculator</h1>
+                    <p class="text-gray-300 mb-4">Estimate the cost for your plumbing repairs and installations.</p>
+                </div>
+
+                <div class="rg-calc-inputs">
+                    <div class="rg-form-group">
+                        <label for="plumbingServiceType">Service Type:</label>
+                        <select id="plumbingServiceType" class="rg-form-control">
+                            <option value="clogDrain">Clogged Drain / Toilet</option>
+                            <option value="leakyFaucet">Leaky Faucet / Pipe</option>
+                            <option value="waterHeater">Water Heater Repair / Replacement</option>
+                            <option value="newFixtureInstall">New Fixture Installation (e.g., sink, toilet)</option>
+                            <option value="pipeRepairReplace">Pipe Repair / Replacement</option>
+                            <option value="sewerLine">Sewer Line Repair / Replacement</option>
+                            <option value="other">Other Plumbing Issue (hourly)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="plumbingEstimatedHoursGroup">
+                        <label for="plumbingEstimatedHours">Estimated Hours:</label>
+                        <div class="rg-calc-item-qty-input-group">
+                            <input type="number" id="plumbingEstimatedHours" class="rg-form-control" value="1" min="0.5" step="0.5">
+                            <span class="rg-calc-unit">hours</span>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group hidden" id="plumbingNumFixturesGroup">
+                        <label for="plumbingNumFixtures">Number of Fixtures/Units:</label>
+                        <div class="rg-calc-counter-input">
+                            <button class="rg-calc-counter-button" data-industry="plumbingServices" data-type="numFixtures" data-delta="-1">-</button>
+                            <span id="plumbingNumFixturesValue" class="rg-calc-counter-value">1</span>
+                            <button class="rg-calc-counter-button" data-industry="plumbingServices" data-type="numFixtures" data-delta="1">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label for="plumbingAccessLevel">Access Level:</label>
+                        <select id="plumbingAccessLevel" class="rg-form-control">
+                            <option value="easy">Easy Access (exposed, direct)</option>
+                            <option value="moderate">Moderate (behind wall, under sink, crawlspace)</option>
+                            <option value="difficult">Difficult (in concrete, major demolition needed)</option>
+                        </select>
+                    </div>
+
+                    <div class="rg-form-group">
+                        <label>Additional Considerations:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="plumbingEmergencyService">
+                                <span class="ml-2">Emergency / After-Hours Service</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="plumbingCameraInspection">
+                                <span class="ml-2">Camera Inspection (for clogs/sewer)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="plumbingPermitRequired">
+                                <span class="ml-2">Permit Required (for major work)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Universal Estimated Job Cost & Discount -->
+            <div class="rg-calc-estimated-cost-box mt-6">
+                <h3 class="text-xl">Estimated Job Cost:</h3>
+                <p class="text-3xl font-bold">Total:</p>
+                <p id="estimatedCost" class="text-5xl font-extrabold">$0 – $0</p>
+                <div class="rg-form-group w-full mt-4">
+                    <label for="universalDiscount" class="text-base">Add Discount?</label>
+                    <div class="rg-calc-discount-input-group">
+                        <input type="number" id="universalDiscount" class="rg-form-control" value="0" min="0" max="100">
+                        <span class="rg-calc-percent-unit">%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScript (Link this to your Netlify hosted script.js) -->
+    <script src="script.js"></script>
+</body>
+</html>

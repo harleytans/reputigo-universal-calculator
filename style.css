@@ -1,0 +1,465 @@
+/*
+ * style.css for Reputigo Universal Service Cost Calculator
+ * Hosted on GitHub Pages
+ *
+ * This file contains all custom CSS for the calculator components,
+ * ensuring consistent branding and responsiveness across all service types.
+ * All custom classes are prefixed with `rg-` or `rg-calc-` to minimize Webflow conflicts.
+ */
+
+/* General Styling & Theming (Consistent with Reputigo) */
+:root {
+    --rg-primary-color: #1976d2; /* Main blue from your provided styles - used for general primary elements */
+    --rg-primary-hover: #1565c0;
+    --rg-danger-color: #d32f2f;
+    --rg-danger-hover: #c62828;
+    --rg-light-gray: #f8f9fa; /* Light gray for background from your provided styles */
+    --rg-medium-gray: #e0e0e0;
+    --rg-dark-gray: #333; /* Dark gray for text from your provided styles */
+    --calculator-main-dark: #000000; /* BLACK for header/cost box */
+    --calculator-button-primary: #000000; /* BLACK for general buttons */
+    --calculator-button-primary-hover: #333333; /* Darker grey for button hover */
+    --toggle-active-color: #1976d2; /* Blue for active toggle */
+}
+
+/* IMPORTANT: No direct body styling here to avoid conflicts with global Webflow styles.
+   The .rg-container is designed to be a self-contained unit that you will embed. */
+
+/* Scoped all styles to the .rg-container to prevent conflicts */
+.rg-container * { margin: 0; padding: 0; box-sizing: border-box; }
+.rg-container {
+    max-width: 900px;
+    margin: 0 auto; /* Ensures horizontal centering within its parent container */
+    background: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    font-family: 'Relative', 'Inter', sans-serif; /* Primary font set here */
+    color: var(--rg-dark-gray);
+    font-weight: 400; /* Default font weight for normal text (Relative 400 Normal) */
+    display: flex; /* Flex container for header, buttons, and forms container */
+    flex-direction: column;
+}
+
+/* Headers should be Relative 700 Bold and have -0.5px letter spacing */
+.rg-calc-header h1,
+.rg-calc-estimated-cost-box h3 {
+    font-weight: 700; /* Relative 700 Bold */
+    letter-spacing: -0.5px; /* Added letter spacing */
+}
+
+/* Universal Calculator Header (Dark section at the top) */
+.rg-calc-header {
+    background-color: var(--calculator-main-dark);
+    color: #ffffff;
+    padding: 2rem;
+    text-align: center;
+}
+.rg-calc-header h1 { color: #ffffff; }
+.rg-calc-header p { color: #cbd5e1; }
+
+
+/* Main calculator content area (White section) */
+#calculatorFormsContainer { /* This container now holds all form sections */
+    background-color: white; /* Ensure white background for this main content area */
+    padding: 2rem; /* Consistent padding */
+    display: block; /* Default to block, specific form section takes over grid/flex */
+    flex-grow: 1; /* Allows it to expand within the rg-container */
+}
+
+/* Styles for individual calculator forms (e.g., cleaning-form, lawn-care-form) */
+.rg-calc-form-section {
+    display: grid; /* Each form itself uses grid for its internal inputs */
+    gap: 1.5rem;
+    grid-template-columns: 1fr; /* Default to single column */
+}
+/* Ensure the inner rg-calc-inputs grid applies correctly within the form sections */
+.rg-calc-form-section .rg-calc-inputs {
+    padding: 0; /* Remove padding as the parent form section already has it */
+    background-color: transparent; /* Remove background as the parent form section already has it */
+}
+
+
+@media (min-width: 768px) {
+    .rg-calc-form-section .rg-calc-inputs {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Form Elements */
+.rg-form-group {
+    margin-bottom: 0; /* Handled by parent grid gap */
+}
+.rg-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500; /* Keeping a slight emphasis on labels for readability */
+    color: var(--rg-dark-gray);
+}
+.rg-form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--rg-medium-gray);
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #ffffff;
+    font-weight: 400; /* Ensure form controls use normal weight */
+}
+.rg-form-control:focus {
+    outline: none;
+    border-color: var(--rg-primary-color);
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+/* Counter Specific Styling */
+.rg-calc-counter-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--rg-medium-gray);
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100%;
+    background-color: #ffffff;
+}
+.rg-calc-counter-button {
+    background-color: var(--calculator-button-primary);
+    color: white;
+    padding: 0.75rem 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    border: none;
+}
+.rg-calc-counter-button:hover {
+    background-color: var(--calculator-button-primary-hover);
+    transform: translateY(-1px);
+}
+.rg-calc-counter-value {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--rg-dark-gray);
+    padding: 0.75rem 0;
+    user-select: none;
+}
+
+
+/* Checkbox styling */
+input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--rg-medium-gray);
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+input[type="checkbox"]:checked {
+    background-color: var(--calculator-button-primary);
+    border-color: var(--calculator-button-primary);
+}
+input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+/* Estimated Cost Box (Universal, fixed position) */
+.rg-calc-estimated-cost-box {
+    background-color: var(--calculator-main-dark);
+    color: #ffffff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    grid-column: 1 / -1; /* Always spans full width on smaller screens */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem; /* Space from the forms above */
+}
+/* Specific grid placement for estimated cost in a multi-column layout */
+@media (min-width: 768px) {
+    /* Override to span right column for industries that match the image layout */
+    /* Default to 3 rows high, adjust if needed per calculator */
+    .rg-calc-form-section:not(#other-form) .rg-calc-estimated-cost-box {
+        grid-column: 2 / 3; /* Spans only the right column on larger screens */
+        grid-row: 1 / span 3; /* Default row span for most calculators, adjust per calculator in media queries if needed */
+    }
+    #lawn-care-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 2; /* Lawn Care is a bit shorter */
+    }
+     #painting-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Painting is taller */
+    }
+     #window-cleaning-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 4; /* Window Cleaning is taller */
+    }
+    #pooper-scooper-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Pooper Scooper is taller */
+    }
+    #property-maintenance-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Property Maintenance */
+    }
+    #pressure-washing-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 5; /* Pressure Washing */
+    }
+     #paving-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 4; /* Paving Services */
+    }
+    #installation-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 4; /* Installation Services */
+    }
+    #junk-removal-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 4; /* Junk Removal */
+    }
+    #irrigation-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Irrigation */
+    }
+    #fence-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Fence */
+    }
+    #janitorial-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 4; /* Janitorial */
+    }
+    #flooring-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 4; /* Flooring */
+    }
+    #dog-walking-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Dog Walking */
+    }
+    #appliance-repair-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Appliance Repair */
+    }
+    #chimney-sweep-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Chimney Sweep */
+    }
+    #carpet-cleaning-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Carpet Cleaning */
+    }
+    #carpentry-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Carpentry */
+    }
+    #garage-services-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Garage Services */
+    }
+    #tree-services-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 4; /* Tree Services */
+    }
+    #locksmith-services-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Locksmith */
+    }
+    #pet-services-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Pet Services */
+    }
+    #landscaping-services-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 4; /* Landscaping Services */
+    }
+    #handyman-services-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Handyman Services */
+    }
+    #hvac-services-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 4; /* HVAC Services */
+    }
+    #electrical-services-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Electrical Services */
+    }
+    #roofing-services-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 4; /* Roofing Services */
+    }
+    #plumbing-services-form .rg-calc-estimated-cost-box {
+        grid-row: 1 / span 3; /* Plumbing */
+    }
+
+}
+
+.rg-calc-estimated-cost-box h3 { color: #ffffff; }
+.rg-calc-estimated-cost-box p { color: #ffffff; }
+
+/* Fix for discount label color within estimated cost box */
+.rg-calc-estimated-cost-box .rg-form-group label {
+    color: #ffffff !important; /* Force WHITE color for visibility */
+    font-weight: 600 !important; /* Make it more prominent */
+}
+
+
+/* Toggle Switch Styling */
+.rg-calc-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin: 0 10px;
+}
+.rg-calc-toggle-switch input { opacity: 0; width: 0; height: 0; }
+.rg-calc-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--rg-medium-gray);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+.rg-calc-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .rg-calc-toggle-slider { background-color: var(--toggle-active-color); }
+input:focus + .rg-calc-toggle-slider { box-shadow: 0 0 1px var(--toggle-active-color); }
+input:checked + .rg-calc-toggle-slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Active toggle text styling */
+.rg-calc-active-toggle-text {
+    font-weight: 700;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+.rg-calc-header .font-medium {
+     color: #cbd5e1;
+     font-weight: 400;
+     transition: all 0.3s ease-in-out;
+}
+
+
+/* Item Quantity Input Styling (for generic "number of items" or "hours") */
+.rg-calc-item-qty-input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--rg-medium-gray);
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100%;
+    background-color: #ffffff;
+    margin-top: 8px; /* Spacing from checkbox label */
+}
+.rg-calc-item-qty-input-group input {
+    flex-grow: 1;
+    padding: 12px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    background-color: transparent;
+    font-weight: 400;
+    color: var(--rg-dark-gray);
+}
+.rg-calc-item-qty-input-group .rg-calc-unit {
+    padding: 12px;
+    background-color: var(--rg-light-gray);
+    border-left: 1px solid var(--rg-medium-gray);
+    color: var(--rg-dark-gray);
+    font-weight: 400;
+}
+
+/* Service-specific input containers (for dynamic display) */
+.service-input-container {
+    padding-bottom: 1rem; /* Space below inputs */
+    padding-left: 1.5rem; /* Indent inputs */
+}
+.service-input-container:last-of-type {
+    padding-bottom: 0;
+}
+
+
+/* Discount Input Styling */
+.rg-calc-discount-input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.rg-calc-discount-input-group input {
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid var(--rg-medium-gray);
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+    font-size: 16px;
+    outline: none;
+    background-color: #ffffff;
+    font-weight: 400;
+    color: var(--rg-dark-gray);
+}
+.rg-calc-discount-input-group .rg-calc-percent-unit {
+    padding: 12px;
+    background-color: var(--rg-light-gray);
+    border: 1px solid var(--rg-medium-gray);
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    color: var(--rg-dark-gray);
+    font-weight: 400;
+}
+
+
+/* Reputigo Section (Removed completely) */
+.reputigo-section {
+    display: none; /* Hide the entire section */
+}
+
+/* Styling for Industry Selection Buttons */
+.rg-calc-industry-btn-group {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    justify-content: center;
+    gap: 10px;
+    padding: 1.5rem 0;
+    background-color: white; /* Match main container background */
+    border-bottom: 1px solid var(--rg-medium-gray); /* Separator */
+    margin-bottom: 0.5rem; /* Space below buttons before current form starts */
+}
+
+.rg-calc-industry-btn {
+    background-color: var(--rg-medium-gray); /* Default inactive button color */
+    color: var(--rg-dark-gray);
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem; /* Rounded corners */
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.1s;
+    border: none; /* No border for cleaner look */
+    white-space: nowrap; /* Prevent wrapping button text */
+    font-family: 'Relative', 'Inter', sans-serif; /* Apply font */
+    letter-spacing: -0.2px; /* Slight letter spacing adjustment */
+}
+
+.rg-calc-industry-btn:hover {
+    background-color: var(--rg-dark-gray);
+    color: white;
+    transform: translateY(-1px); /* Subtle lift effect */
+}
+
+.rg-calc-industry-btn.active {
+    background-color: var(--rg-primary-color); /* Active button color */
+    color: white;
+    font-weight: 700; /* Bold active button */
+    box-shadow: 0 2px 5px rgba(25, 118, 210, 0.3); /* Subtle shadow for active */
+}
+
+/* Ensure form sections are hidden by default */
+.rg-calc-form-section {
+    display: none;
+    /* Remove padding as the parent calculatorFormsContainer already has it. */
+    /* Inner headers need padding, but the form section itself does not add more. */
+}
+/* Ensure the current active form appears */
+.rg-calc-form-section:not(.hidden) {
+    display: block; /* Overrides the default hidden and shows the form as a block */
+}
+
