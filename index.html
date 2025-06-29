@@ -7,8 +7,8 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- External CSS (Link this to your GitHub Pages hosted style.css) -->
-    <!-- Replace 'your-repo-name' and 'your-username' with your actual GitHub details -->
-    <link rel="stylesheet" href="/style.css"> 
+    <!-- Replace 'your-repo-name' and 'your-username' with your actual GitHub details when deploying -->
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
     <div class="rg-container">
@@ -20,19 +20,19 @@
 
         <!-- Industry Selection Buttons -->
         <div class="rg-calc-industry-btn-group">
-            <button class="rg-calc-industry-btn" id="btnCleaning">Cleaning Services</button>
-            <button class="rg-calc-industry-btn" id="btnLawnCare">Lawn Care Services</button>
-            <button class="rg-calc-industry-btn" id="btnPainting">Painting</button>
-            <button class="rg-calc-industry-btn" id="btnRecycling">Recycling Services</button>
-            <button class="rg-calc-industry-btn" id="btnWindowCleaning">Window Cleaning</button>
-            <button class="rg-calc-industry-btn" id="btnPooperScooper">Pooper Scooper Services</button>
-            <button class="rg-calc-industry-btn" id="btnPropertyMaintenance">Property Maintenance</button>
-            <button class="rg-calc-industry-btn" id="btnPoolSpa">Pool & Spa Services</button>
-            <button class="rg-calc-industry-btn" id="btnPressureWashing">Pressure Washing</button>
-            <button class="rg-calc-industry-btn" id="btnPaving">Paving Services</button>
-            <button class="rg-calc-industry-btn" id="btnInstallation">Installation Services</button>
-            <button class="rg-calc-industry-btn" id="btnJunkRemoval">Junk Removal</button>
-            <button class="rg-calc-industry-btn" id="btnIrrigation">Irrigation Services</button>
+            <button class="rg-calc-industry-btn" id="btnCleaning" data-industry-id="cleaning">Cleaning Services</button>
+            <button class="rg-calc-industry-btn" id="btnLawnCare" data-industry-id="lawn-care">Lawn Care Services</button>
+            <button class="rg-calc-industry-btn" id="btnPainting" data-industry-id="painting">Painting</button>
+            <button class="rg-calc-industry-btn" id="btnRecycling" data-industry-id="recycling">Recycling Services</button>
+            <button class="rg-calc-industry-btn" id="btnWindowCleaning" data-industry-id="window-cleaning">Window Cleaning</button>
+            <button class="rg-calc-industry-btn" id="btnPooperScooper" data-industry-id="pooper-scooper">Pooper Scooper Services</button>
+            <button class="rg-calc-industry-btn" id="btnPropertyMaintenance" data-industry-id="property-maintenance">Property Maintenance</button>
+            <button class="rg-calc-industry-btn" id="btnPoolSpa" data-industry-id="pool-spa">Pool & Spa Services</button>
+            <button class="rg-calc-industry-btn" id="btnPressureWashing" data-industry-id="pressure-washing">Pressure Washing</button>
+            <button class="rg-calc-industry-btn" id="btnPaving" data-industry-id="paving">Paving Services</button>
+            <button class="rg-calc-industry-btn" id="btnInstallation" data-industry-id="installation">Installation Services</button>
+            <button class="rg-calc-industry-btn" id="btnJunkRemoval" data-industry-id="junk-removal">Junk Removal</button>
+            <button class="rg-calc-industry-btn" id="btnIrrigation" data-industry-id="irrigation">Irrigation Services</button>
             <button class="rg-calc-industry-btn" id="btnFence">Fence Services</button>
             <button class="rg-calc-industry-btn" id="btnJanitorial">Janitorial Services</button>
             <button class="rg-calc-industry-btn" id="btnFlooring">Flooring Services</button>
@@ -84,9 +84,9 @@
                     <div id="cleaningRoomBasedInputs" class="rg-form-group">
                         <label for="cleaningBedrooms">Number of Bedrooms:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="cleaning" data-type="bedrooms" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="cleaningBedrooms" data-delta="-1">-</button>
                             <span id="cleaningBedroomsValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="cleaning" data-type="bedrooms" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="cleaningBedrooms" data-delta="1">+</button>
                         </div>
                     </div>
                     <div id="cleaningSquareFootageInput" class="rg-form-group hidden">
@@ -99,9 +99,9 @@
                     <div id="cleaningBathroomInputs" class="rg-form-group">
                         <label for="cleaningBathrooms">Number of Bathrooms:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="cleaning" data-type="bathrooms" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="cleaningBathrooms" data-delta="-1">-</button>
                             <span id="cleaningBathroomsValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="cleaning" data-type="bathrooms" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="cleaningBathrooms" data-delta="1">+</button>
                         </div>
                     </div>
                     <div class="rg-form-group">
@@ -476,9 +476,9 @@
                     <div class="rg-form-group">
                         <label for="pooperScooperNumDogs">Number of Dogs:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="pooperScooper" data-type="numDogs" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="pooperScooperNumDogs" data-delta="-1">-</button>
                             <span id="pooperScooperNumDogsValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="pooperScooper" data-type="numDogs" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="pooperScooperNumDogs" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -566,9 +566,9 @@
                     <div class="rg-form-group">
                         <label for="propertyMaintenanceEstimatedHours">Estimated General Hours:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="propertyMaintenance" data-type="estimatedHours" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="propertyMaintenanceEstimatedHours" data-delta="-1">-</button>
                             <span id="propertyMaintenanceEstimatedHoursValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="propertyMaintenance" data-type="estimatedHours" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="propertyMaintenanceEstimatedHours" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -841,9 +841,9 @@
                     <div class="rg-form-group hidden" id="pavingRepairPatchingGroup">
                         <label for="pavingNumPatches">Number of Patches/Repair Areas:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="paving" data-type="numPatches" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="pavingNumPatches" data-delta="-1">-</button>
                             <span id="pavingNumPatchesValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="paving" data-type="numPatches" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="pavingNumPatches" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -895,9 +895,9 @@
                     <div class="rg-form-group" id="installationNumUnitsGroup">
                         <label for="installationNumUnits">Number of Units/Items:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="installation" data-type="numUnits" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="installationNumUnits" data-delta="-1">-</button>
                             <span id="installationNumUnitsValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="installation" data-type="numUnits" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="installationNumUnits" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -996,9 +996,9 @@
                             </label>
                             <div id="junkRemovalMattressInputs" class="service-input-container hidden">
                                 <div class="rg-calc-counter-input">
-                                    <button class="rg-calc-counter-button" data-industry="junkRemoval" data-type="mattresses" data-delta="-1">-</button>
+                                    <button class="rg-calc-counter-button" data-field="junkRemovalMattresses" data-delta="-1">-</button>
                                     <span id="junkRemovalMattressesValue" class="rg-calc-counter-value">0</span>
-                                    <button class="rg-calc-counter-button" data-industry="junkRemoval" data-type="mattresses" data-delta="1">+</button>
+                                    <button class="rg-calc-counter-button" data-field="junkRemovalMattresses" data-delta="1">+</button>
                                 </div>
                             </div>
                             
@@ -1008,9 +1008,9 @@
                             </label>
                              <div id="junkRemovalTireInputs" class="service-input-container hidden">
                                 <div class="rg-calc-counter-input">
-                                    <button class="rg-calc-counter-button" data-industry="junkRemoval" data-type="tires" data-delta="-1">-</button>
+                                    <button class="rg-calc-counter-button" data-field="junkRemovalTires" data-delta="-1">-</button>
                                     <span id="junkRemovalTiresValue" class="rg-calc-counter-value">0</span>
-                                    <button class="rg-calc-counter-button" data-industry="junkRemoval" data-type="tires" data-delta="1">+</button>
+                                    <button class="rg-calc-counter-button" data-field="junkRemovalTires" data-delta="1">+</button>
                                 </div>
                             </div>
 
@@ -1020,9 +1020,9 @@
                             </label>
                              <div id="junkRemovalHeavyItemInputs" class="service-input-container hidden">
                                 <div class="rg-calc-counter-input">
-                                    <button class="rg-calc-counter-button" data-industry="junkRemoval" data-type="heavyItems" data-delta="-1">-</button>
+                                    <button class="rg-calc-counter-button" data-field="junkRemovalHeavyItems" data-delta="-1">-</button>
                                     <span id="junkRemovalHeavyItemsValue" class="rg-calc-counter-value">0</span>
-                                    <button class="rg-calc-counter-button" data-industry="junkRemoval" data-type="heavyItems" data-delta="1">+</button>
+                                    <button class="rg-calc-counter-button" data-field="junkRemovalHeavyItems" data-delta="1">+</button>
                                 </div>
                             </div>
                         </div>
@@ -1071,9 +1071,9 @@
                     <div class="rg-form-group" id="irrigationNumZonesGroup">
                         <label for="irrigationNumZones">Number of Zones:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="irrigation" data-type="numZones" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="irrigationNumZones" data-delta="-1">-</button>
                             <span id="irrigationNumZonesValue" class="rg-calc-counter-value">4</span>
-                            <button class="rg-calc-counter-button" data-industry="irrigation" data-type="numZones" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="irrigationNumZones" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -1178,9 +1178,9 @@
                             </label>
                              <div id="fenceGateInstallationInputs" class="service-input-container hidden">
                                 <div class="rg-calc-counter-input">
-                                    <button class="rg-calc-counter-button" data-industry="fence" data-type="numGates" data-delta="-1">-</button>
+                                    <button class="rg-calc-counter-button" data-field="fenceNumGates" data-delta="-1">-</button>
                                     <span id="fenceNumGatesValue" class="rg-calc-counter-value">1</span>
-                                    <button class="rg-calc-counter-button" data-industry="fence" data-type="numGates" data-delta="1">+</button>
+                                    <button class="rg-calc-counter-button" data-field="fenceNumGates" data-delta="1">+</button>
                                 </div>
                             </div>
                             <label class="flex items-center">
@@ -1238,9 +1238,9 @@
                     <div class="rg-form-group">
                         <label for="janitorialNumRestrooms">Number of Restrooms:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="janitorial" data-type="numRestrooms" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="janitorialNumRestrooms" data-delta="-1">-</button>
                             <span id="janitorialNumRestroomsValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="janitorial" data-type="numRestrooms" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="janitorialNumRestrooms" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -1331,9 +1331,9 @@
                             </label>
                             <div id="flooringStairInstallationInputs" class="service-input-container hidden">
                                 <div class="rg-calc-counter-input">
-                                    <button class="rg-calc-counter-button" data-industry="flooring" data-type="numStairs" data-delta="-1">-</button>
+                                    <button class="rg-calc-counter-button" data-field="flooringNumStairs" data-delta="-1">-</button>
                                     <span id="flooringNumStairsValue" class="rg-calc-counter-value">1</span>
-                                    <button class="rg-calc-counter-button" data-industry="flooring" data-type="numStairs" data-delta="1">+</button>
+                                    <button class="rg-calc-counter-button" data-field="flooringNumStairs" data-delta="1">+</button>
                                 </div>
                             </div>
                         </div>
@@ -1352,9 +1352,9 @@
                     <div class="rg-form-group">
                         <label for="dogWalkingNumDogs">Number of Dogs:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="dogWalking" data-type="numDogs" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="dogWalkingNumDogs" data-delta="-1">-</button>
                             <span id="dogWalkingNumDogsValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="dogWalking" data-type="numDogs" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="dogWalkingNumDogs" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -1484,9 +1484,9 @@
                     <div class="rg-form-group">
                         <label for="chimneyFlues">Number of Flues:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="chimneySweep" data-type="numFlues" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="chimneyFlues" data-delta="-1">-</button>
                             <span id="chimneyFluesValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="chimneySweep" data-type="numFlues" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="chimneyFlues" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -1546,9 +1546,9 @@
                     <div class="rg-form-group" id="carpetCleaningNumRoomsGroup">
                         <label for="carpetCleaningNumRooms">Number of Rooms:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="carpetCleaning" data-type="numRooms" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="carpetCleaningNumRooms" data-delta="-1">-</button>
                             <span id="carpetCleaningNumRoomsValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="carpetCleaning" data-type="numRooms" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="carpetCleaningNumRooms" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -1590,9 +1590,9 @@
                             </label>
                             <div id="carpetStairCleaningInputs" class="service-input-container hidden">
                                 <div class="rg-calc-counter-input">
-                                    <button class="rg-calc-counter-button" data-industry="carpetCleaning" data-type="numStairs" data-delta="-1">-</button>
+                                    <button class="rg-calc-counter-button" data-field="carpetCleaningNumStairs" data-delta="-1">-</button>
                                     <span id="carpetCleaningNumStairsValue" class="rg-calc-counter-value">1</span>
-                                    <button class="rg-calc-counter-button" data-industry="carpetCleaning" data-type="numStairs" data-delta="1">+</button>
+                                    <button class="rg-calc-counter-button" data-field="carpetCleaningNumStairs" data-delta="1">+</button>
                                 </div>
                             </div>
                         </div>
@@ -1812,9 +1812,9 @@
                     <div class="rg-form-group">
                         <label for="treeCount">Number of Trees / Stumps:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="treeServices" data-type="numTreesStumps" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="treeCount" data-delta="-1">-</button>
                             <span id="treeCountValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="treeServices" data-type="numTreesStumps" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="treeCount" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -1878,9 +1878,9 @@
                     <div class="rg-form-group" id="locksmithNumLocksGroup">
                         <label for="locksmithNumLocks">Number of Locks/Units:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="locksmithServices" data-type="numLocks" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="locksmithNumLocks" data-delta="-1">-</button>
                             <span id="locksmithNumLocksValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="locksmithServices" data-type="numLocks" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="locksmithNumLocks" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -1910,9 +1910,9 @@
                             </label>
                             <div id="locksmithKeyExtraCopiesInputs" class="service-input-container hidden">
                                 <div class="rg-calc-counter-input">
-                                    <button class="rg-calc-counter-button" data-industry="locksmithServices" data-type="numKeys" data-delta="-1">-</button>
+                                    <button class="rg-calc-counter-button" data-field="locksmithNumKeys" data-delta="-1">-</button>
                                     <span id="locksmithNumKeysValue" class="rg-calc-counter-value">1</span>
-                                    <button class="rg-calc-counter-button" data-industry="locksmithServices" data-type="numKeys" data-delta="1">+</button>
+                                    <button class="rg-calc-counter-button" data-field="locksmithNumKeys" data-delta="1">+</button>
                                 </div>
                             </div>
                             <label class="flex items-center">
@@ -1977,9 +1977,9 @@
                     <div class="rg-form-group hidden" id="petSittingBoardingDurationGroup">
                         <label for="petSittingBoardingDuration">Duration (Nights/Days):</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="petServices" data-type="duration" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="petSittingBoardingDuration" data-delta="-1">-</button>
                             <span id="petSittingBoardingDurationValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="petServices" data-type="duration" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="petSittingBoardingDuration" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -2110,9 +2110,9 @@
                      <div class="rg-form-group hidden" id="handymanNumItemsGroup">
                         <label for="handymanNumItems">Number of Items/Areas:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="handymanServices" data-type="numItems" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="handymanNumItems" data-delta="-1">-</button>
                             <span id="handymanNumItemsValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="handymanServices" data-type="numItems" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="handymanNumItems" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -2246,9 +2246,9 @@
                     <div class="rg-form-group hidden" id="electricalNumUnitsGroup">
                         <label for="electricalNumUnits">Number of Units/Items:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="electricalServices" data-type="numUnits" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="electricalNumUnits" data-delta="-1">-</button>
                             <span id="electricalNumUnitsValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="electricalServices" data-type="numUnits" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="electricalNumUnits" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -2392,9 +2392,9 @@
                     <div class="rg-form-group hidden" id="plumbingNumFixturesGroup">
                         <label for="plumbingNumFixtures">Number of Fixtures/Units:</label>
                         <div class="rg-calc-counter-input">
-                            <button class="rg-calc-counter-button" data-industry="plumbingServices" data-type="numFixtures" data-delta="-1">-</button>
+                            <button class="rg-calc-counter-button" data-field="plumbingNumFixtures" data-delta="-1">-</button>
                             <span id="plumbingNumFixturesValue" class="rg-calc-counter-value">1</span>
-                            <button class="rg-calc-counter-button" data-industry="plumbingServices" data-type="numFixtures" data-delta="1">+</button>
+                            <button class="rg-calc-counter-button" data-field="plumbingNumFixtures" data-delta="1">+</button>
                         </div>
                     </div>
 
@@ -2443,7 +2443,7 @@
         </div>
     </div>
 
-    <!-- External JavaScript (Link this to your Netlify hosted script.js) -->
+    <!-- External JavaScript (Link this to your GitHub Pages hosted script.js) -->
     <script src="script.js"></script>
 </body>
 </html>
